@@ -1,34 +1,28 @@
 ## Build
 # docker build -t backend:0.1.0 .
 # RUN
-# docker run -d -e ORACLE_USER=appuser -e ORACLE_PASS=myapppass -e ORACLE_CONNSTR=localhost:1521/xepdb1 backend:0.1.0
+# docker run -d -p 3800:3800 -e URL_DB=postgresql://postgres:*****@72.61.1.251:8000/mybd -e PRIVATE_KEY=tu_private_key backend:0.1.0
 
-FROM oraclelinux:8.7
+FROM node:16-alpine
 
-# Install Oracle Client
-# https://yum.oracle.com/oracle-instant-client.html
-RUN dnf install oracle-instantclient-release-el8 -y
-RUN dnf install oracle-instantclient-basic -y
+# Variables de entorno por defecto
+ENV URL_DB=postgresql://postgres:0077@72.61.1.251:5300/PharmatrixDB
+    SERVER_PORT=3800
 
-# Install NodeJs
-# https://yum.oracle.com/oracle-linux-nodejs.html#InstallingNodeOnOL8
-RUN dnf module enable nodejs:16 -y
-RUN dnf module install nodejs -y
-
-# Variables de la app
-ENV DB_NAME=BD_BUDGET \
-DB_USERNAME=WALTER \
-DB_PASSWORD=1234 \
-DB_HOST=localhost \
-SERVER_PORT=3800 
-
-# APP Copy 
-COPY . /opt/app
-
-# Cambiar de directorio
+# Crear directorio de la app
 WORKDIR /opt/app
 
-# Dependencias
-RUN npm install
+# Copiar package.json primero para mejor cache de Docker
+COPY package*.json ./
 
-CMD [ "npm", "start" ]
+# Instalar dependencias
+RUN npm install --production
+
+# Copiar el resto de la aplicación
+COPY . .
+
+# Exponer el puerto
+EXPOSE 3800
+
+# Usar node directamente en producción
+CMD [ "node", "./src/index.js" ]
