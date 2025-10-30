@@ -36,7 +36,8 @@ const User = db.get().define(
 
     },
     {
-        schema: "PharmatrixDB", 
+        //schema: "PharmatrixDB", 
+        schema: "pharmatrixdb"
     }
 );
 

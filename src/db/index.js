@@ -7,9 +7,16 @@ class DB {
 
     constructor(){
         configureEnvVars();
-        // CONLA URL DIRECTA:
-        this.sequelize = new Sequelize(process.env.URL_DB,{
+        // CONLA URL DIRECTA: URL de render o URL de VPS
+       this.sequelize = new Sequelize(process.env.DATABASE_URL, {
             dialect: "postgres",
+            dialectOptions: {
+                ssl: {
+                    require: true,
+                    rejectUnauthorized: false // Importante para Render
+                }
+            },
+            logging: console.log // Para ver los errores detallados
         })
     }   
 
