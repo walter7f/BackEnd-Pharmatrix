@@ -17,19 +17,19 @@ const LotePlanificacion = db.get().define(
         },
         planificacion: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         vencimiento: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         formaFarmaceutica: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         unidad: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         lote: {
             type: DataTypes.STRING,
@@ -93,7 +93,7 @@ const LotePlanificacion = db.get().define(
         },
         preProceso: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         proceso: {
             type: DataTypes.STRING,
