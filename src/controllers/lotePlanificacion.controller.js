@@ -1,13 +1,13 @@
-import Account from "../models/Account.js";
-import Income from "../models/Income.js"
+//import Account from "../models/Account.js";
+import LotePlanificacion from "../models/LotePlanificacion.js"
 
-export async function createIncome(request, response){
+export async function createLotePlani(request, response){
     try {
-        const {name,currency, amount, category,id_user,id_account}= request.body;
+        const {producto,tamanioLote,distribucion1,distribucion2,distribucion3,distribucion4,distribucion5}= request.body;
 
-        const newIncome  = await Income.build({name,currency,amount,category, id_user,id_account}).save();
+        const newPlani  = await LotePlanificacion.build({producto,tamanioLote,distribucion1,distribucion2,distribucion3,distribucion4,distribucion5}).save();
         
-        response.send(newIncome);
+        response.send(newPlani);
     } catch (error) {
         response.status(500).send({
             message: "There war an error while creating a new Income: "+ error,
@@ -17,10 +17,10 @@ export async function createIncome(request, response){
     }
 };
 
-export async function getAllIncome(request, response){
+export async function getAllLotePlani(request, response){
     try {
-        const incomes = await Income.findAll();
-        response.send(incomes);
+        const plani = await LotePlanificacion.findAll();
+        response.send(plani);
     } catch (error) {
         response.status(500).send({
             message: "There war an error while gettinf all product:  "+ error,
@@ -29,15 +29,15 @@ export async function getAllIncome(request, response){
     }
 }
 
-export async function getOneIncome(request, response){
+export async function getOneLotePlani(request, response){
     const id = request.params.id;
 
     try {
-        const income = await Income.findOne({where:{ id }});
-        if(!income){
+        const plani = await LotePlanificacion.findOne({where:{ id }});
+        if(!plani){
             return response.status(404).send({messge: "product not found"});
         }
-        response.send(income);
+        response.send(plani);
     } catch (error) {
         response.status(500).send({
             message: "There war an error while getting product  : "+ error,
@@ -46,12 +46,12 @@ export async function getOneIncome(request, response){
     }
 }
 
-export async function deleteOneIncome(request, response){
+export async function deleteOneLotePlani(request, response){
     const id = request.params.id;
 
     try {
-        const deleteIncome = await Income.destroy({where:{ id }});
-        if(deleteIncome === 1){
+        const deletePlani = await LotePlanificacion.destroy({where:{ id }});
+        if(deletePlani === 1){
             return response.send({message:"Product deleted"});
         }
         response.send({message:"Product wan not removed"});
@@ -62,12 +62,12 @@ export async function deleteOneIncome(request, response){
         });
     }
 }
-
+/*
 export async function getQuery(request, response){
     const id = request.params.id;
 
     try { 
-        const icome = await Income.findAll({where:{ id_user:id }});
+        const icome = await LotePlanificacion.findAll({where:{ id_user:id }});
         if(!icome){
             return response.status(404).send({messge: "product not found"});
         }
@@ -84,7 +84,7 @@ export async function getQueryComplete(request, response){
     const id = request.params.id;
 
     try { 
-        const income= await Income.findAll({where:{ id_user:id },
+        const income= await LotePlanificacion.findAll({where:{ id_user:id },
         include:[{model:Account}]
         });
         if(!income){
@@ -97,4 +97,4 @@ export async function getQueryComplete(request, response){
             error,
         });
     }
-}
+}*/

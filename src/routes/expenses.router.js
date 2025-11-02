@@ -1,4 +1,4 @@
-import express from "express";
+/*import express from "express";
 import {
     createExprenses,
     getAllExprenses,
@@ -24,3 +24,4 @@ expensesRouter.delete("/expenses/:id", deleteOneExpenses);
 
 
 export default expensesRouter;
+*/

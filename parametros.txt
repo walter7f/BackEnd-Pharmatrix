@@ -1,0 +1,27 @@
+Lotes de planificacion:
+id Lotes
+producto
+Lotes
+orden
+tamanioLote
+distribucion 1
+distribucion 2
+distribucion 3
+distribucion 4
+distribucion 5
+distribucionFinal 1
+distribucionFinal 2
+distribucionFinal 3
+distribucionFinal 4
+distribucionFinal 5
+planta
+areaFrabricacion
+preProceso
+proceso 
+materiaPrima
+materialEmpaque
+fechaInici
+fechaFinalizado
+estadoProductoTerminado
+
+

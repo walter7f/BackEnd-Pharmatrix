@@ -1,4 +1,4 @@
-import express from "express";
+/*import express from "express";
 import {
     createAccount,
     getAllAccount,
@@ -24,3 +24,4 @@ accountRouter.delete("/account/:id", deleteOneAccount);
 export default accountRouter;
 
 
+*/

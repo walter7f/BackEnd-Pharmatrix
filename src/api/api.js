@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors"
 import userRouter from "../routes/user.router.js";
-import accountRouter from "../routes/account.router.js";
-import expensesRouter from "../routes/expenses.router.js";
-import incomeRouter from "../routes/income.router.js";
+//import accountRouter from "../routes/account.router.js";
+//import expensesRouter from "../routes/expenses.router.js";
+import lotePlaniRouter from "../routes/lotePlanificacion.router.js";
 
 import cookieParser from "cookie-parser";
 
@@ -17,7 +17,7 @@ app.use(express.json());
 //parsear x-www-form-urlencoded
 app.use(express.urlencoded({extended:false}));
 
-app.use("/api/pharmatrix", userRouter, expensesRouter, incomeRouter,accountRouter);
+app.use("/api/pharmatrix", userRouter,lotePlaniRouter /*expensesRouter,*//*,accountRouter*/);
 
 export default app;
 

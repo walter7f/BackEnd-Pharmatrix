@@ -1,4 +1,4 @@
-import {DataTypes} from "sequelize"
+/*import {DataTypes} from "sequelize"
 import db from "../db/index.js";
 import User from "./User.js";
 
@@ -38,3 +38,4 @@ const Account = db.get().define(
 Account.belongsTo(User,{foreignKey:"id_user"});
 
 export default Account;
+*/

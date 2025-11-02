@@ -1,4 +1,4 @@
-import {DataTypes} from "sequelize"
+/*import {DataTypes} from "sequelize"
 import db from "../db/index.js";
 import User from "./User.js";
 import Account from './Account.js'
@@ -38,6 +38,6 @@ Expenses.belongsTo(Account,{foreignKey:"id_account"});
 
 export default Expenses;
 
-
+*/
 // orm  BD relacional
 // odm   BD no relacional

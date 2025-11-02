@@ -1,4 +1,4 @@
-import { Sequelize, where } from "sequelize";
+/*import { Sequelize, where } from "sequelize";
 import Account from "../models/Account.js";
 import Expenses from "../models/Expenses.js"
 
@@ -106,7 +106,7 @@ export async function PagoExpe(request, response){
 
         const newExprenses  = await Expenses.build({name,currency,amount,category,id_user,id_account}).save();
         
-        response.send(newExprenses);*/
+        response.send(newExprenses);*//*
         const {name, currency, amount, category, id_user, id_account}= request.body
         const newExprenses = await Expenses.build({name, currency, amount, category, id_user, id_account},{transaction:t}).save();
         const account = Account.update({
@@ -145,3 +145,4 @@ export async function getQueryComplete(request, response){
         });
     }
 }
+*/
