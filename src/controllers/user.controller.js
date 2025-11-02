@@ -67,8 +67,8 @@ export async function login(request, response){
              .status(404)
              .send({mesage: "user data missing"});
              }
-             
-        const {email, password, id}= request.body;
+             // aqui iba un id
+        const {email, password}= request.body;
 
         /*
         1. validar usuario en db
@@ -106,8 +106,14 @@ export async function login(request, response){
         
         const idUser= await userFound.getDataValue("id")
         response.cookie('authorization', token);
-    
-        response.send({token, idUser});
+        
+        const nameUser= await userFound.getDataValue("nombre")
+        response.cookie('authorization', token);
+
+        const puestoUser= await userFound.getDataValue("puesto")
+        response.cookie('authorization', token);
+
+        response.send({token, idUser, nameUser, puestoUser});
 
     } catch (error) {
         response.status(500).send({
