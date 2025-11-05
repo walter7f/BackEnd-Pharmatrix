@@ -9,10 +9,10 @@ import {
 
 const areaFrabircRouter = express.Router();
 
-areaFrabircRouter.post("/", createAreaFabricacion);       // Crear
-areaFrabircRouter.get("/", getAllAreasFabricacion);       // Listar todas
-areaFrabircRouter.get("/:id", getOneAreaFabricacion);     // Obtener una
-areaFrabircRouter.delete("/:id", deleteOneAreaFabricacion); // Eliminar
-areaFrabircRouter.get("/con/lotes", getAreasConLotes);    // (Opcional) Ver con lotes
+areaFrabircRouter.post("/areaf/", createAreaFabricacion);       // Crear
+areaFrabircRouter.get("/areaf/", getAllAreasFabricacion);       // Listar todas
+areaFrabircRouter.get("/areaf/:id", getOneAreaFabricacion);     // Obtener una
+areaFrabircRouter.delete("/areaf/:id", deleteOneAreaFabricacion); // Eliminar
+areaFrabircRouter.get("/areaflotes", getAreasConLotes);    // (Opcional) Ver con lotes
 
 export default areaFrabircRouter;
