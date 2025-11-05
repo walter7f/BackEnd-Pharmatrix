@@ -118,15 +118,16 @@ const LotePlanificacion = db.get().define(
         estadoProductoTerminado: {
             type: DataTypes.STRING,
             allowNull: true,
-        }
+        },
+        fechaPhani:{
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
     },
     {
         schema: "pharmatrixdb",
     }
 );
 
-// esto hace la relacion con las demas tablas 
-//LotePlanificacion.belongsTo(User, {foreignKey: "id_user"});
-//Income.belongsTo(Account,{foreignKey: "id_account"})
 
 export default LotePlanificacion;

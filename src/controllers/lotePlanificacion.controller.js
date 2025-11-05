@@ -3,9 +3,9 @@ import LotePlanificacion from "../models/LotePlanificacion.js"
 
 export async function createLotePlani(request, response){
     try {
-        const {producto,tamanioLote,distribucion1,distribucion2,distribucion3,distribucion4,distribucion5}= request.body;
+        const {producto,fechaPhani,tamanioLote,distribucion1,distribucion2,distribucion3,distribucion4,distribucion5}= request.body;
 
-        const newPlani  = await LotePlanificacion.build({producto,tamanioLote,distribucion1,distribucion2,distribucion3,distribucion4,distribucion5}).save();
+        const newPlani  = await LotePlanificacion.build({producto,fechaPhani,tamanioLote,distribucion1,distribucion2,distribucion3,distribucion4,distribucion5}).save();
         
         response.send(newPlani);
     } catch (error) {
