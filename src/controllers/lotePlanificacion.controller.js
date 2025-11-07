@@ -62,6 +62,75 @@ export async function deleteOneLotePlani(request, response){
         });
     }
 }
+
+export async function updateLotePlani(request, response) {
+    const id = request.params.id;
+    
+    try {
+        // Campos permitidos para actualización
+        const camposPermitidos = [
+            'producto', 'planificacion', 'vencimiento', 'formaFarmaceutica', 
+            'unidad', 'lote', 'orden', 'tamanioLote', 'distribucion1', 
+            'distribucion2', 'distribucion3', 'distribucion4', 'distribucion5',
+            'distribucionFinal1', 'distribucionFinal2', 'distribucionFinal3', 
+            'distribucionFinal4', 'distribucionFinal5', 'planta', 'areaFabricacion',
+            'preProceso', 'proceso', 'materiaPrima', 'materialEmpaque', 
+            'fechaInicio', 'fechaFinalizado', 'estadoProductoTerminado', 'fechaPhani'
+        ];
+
+        // Filtrar solo los campos permitidos que vienen en el request
+        const datosParaActualizar = {};
+        
+        camposPermitidos.forEach(campo => {
+            if (request.body[campo] !== undefined) {
+                datosParaActualizar[campo] = request.body[campo];
+            }
+        });
+
+        // Verificar que hay al menos un campo para actualizar
+        if (Object.keys(datosParaActualizar).length === 0) {
+            return response.status(400).send({
+                message: "No se proporcionaron campos válidos para actualizar"
+            });
+        }
+
+        // Buscar el lote primero
+        const lote = await LotePlanificacion.findOne({ where: { id } });
+        if (!lote) {
+            return response.status(404).send({ 
+                message: "Lote de planificación no encontrado" 
+            });
+        }
+
+        // Actualizar solo los campos proporcionados
+        const [filasActualizadas] = await LotePlanificacion.update(
+            datosParaActualizar,
+            { 
+                where: { id } 
+            }
+        );
+
+        if (filasActualizadas === 0) {
+            return response.status(400).send({
+                message: "No se pudo actualizar el lote de planificación"
+            });
+        }
+
+        // Obtener el registro actualizado
+        const loteActualizado = await LotePlanificacion.findOne({ where: { id } });
+        
+        response.send({
+            message: "Lote de planificación actualizado exitosamente",
+            data: loteActualizado
+        });
+
+    } catch (error) {
+        response.status(500).send({
+            message: `Hubo un error al actualizar el lote de planificación: ${error.message}`,
+            error: error.message
+        });
+    }
+}
 /*
 export async function getQuery(request, response){
     const id = request.params.id;
