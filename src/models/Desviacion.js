@@ -1,5 +1,6 @@
 import {DataTypes} from "sequelize"
 import db from "../db/index.js";
+import ProcesoEtapa from "./proceso.js"
 
 
 const Desviacion = db.get().define(
@@ -67,7 +68,8 @@ const Desviacion = db.get().define(
         schema: "pharmatrixdb",
     }
 );
-
+ProcesoEtapa.hasMany(Desviacion,{foreignKey:"id_proceso"});
+Desviacion.belongsTo(ProcesoEtapa, {foreignKey: "id_proceso",});
 
 export default Desviacion;
 

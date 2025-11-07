@@ -1,6 +1,6 @@
 import {DataTypes} from "sequelize"
 import db from "../db/index.js";
-//import LotePlanificacion from "./LotePlanificacion.js";
+import LotePlanificacion from "./LotePlanificacion.js";
 
 const AreaFabricacion = db.get().define(
     "AreaFabricacion",
@@ -20,6 +20,10 @@ const AreaFabricacion = db.get().define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        orden:{
+            type: DataTypes.INTEGER,
+            allowNull:false,
+        }
     
     },
     {
@@ -27,6 +31,6 @@ const AreaFabricacion = db.get().define(
     }
 );
 
-//LotePlanificacion.belongsTo(AreaFabricacion,{foreignKey:"id_areaFabricacion"})
-
+LotePlanificacion.hasMany(AreaFabricacion,{foreignKey:"id_lotePlani"});
+AreaFabricacion.belongsTo(LotePlanificacion, {foreignKey: "id_lotePlani",});
 export default AreaFabricacion

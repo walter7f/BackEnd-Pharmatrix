@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors"
 import userRouter from "../routes/user.router.js";
-//import accountRouter from "../routes/account.router.js";
+import procesoEtapaRouter from "../routes/procesoEtapa.router.js"
 import desviacionRouter from "../routes/desviacion.router.js";
 import lotePlaniRouter from "../routes/lotePlanificacion.router.js";
 import areaFrabircRouter from "../routes/areaFabricacion.route.js"
@@ -18,7 +18,7 @@ app.use(express.json());
 //parsear x-www-form-urlencoded
 app.use(express.urlencoded({extended:false}));
 
-app.use("/api/pharmatrix", userRouter,lotePlaniRouter,areaFrabircRouter,desviacionRouter);
+app.use("/api/pharmatrix", userRouter,lotePlaniRouter,areaFrabircRouter,desviacionRouter,procesoEtapaRouter);
 
 export default app;
 

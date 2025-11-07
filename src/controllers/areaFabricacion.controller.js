@@ -5,7 +5,7 @@ import LotePlanificacion from "../models/LotePlanificacion.js";
 /* ✅ CREAR un área de fabricación */
 export async function createAreaFabricacion(request, response) {
   try {
-    const { area_nombre, Planta } = request.body;
+    const { area_nombre, Planta,orden } = request.body;
 
     if (!area_nombre || !Planta) {
       return response.status(400).send({
@@ -16,6 +16,7 @@ export async function createAreaFabricacion(request, response) {
     const newArea = await AreaFabricacion.build({
       area_nombre,
       Planta,
+      orden,
     }).save();
 
     response.send(newArea);
